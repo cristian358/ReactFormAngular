@@ -303,20 +303,70 @@
 </style>
 
 <div> 
-  <form [formGroup]="formdata" (ngSubmit)="onSubmit()" > 
-    <label for="street">First Name: </label>
-     <input type= "text"  name="firstname" placeholder="First Name" formControlName = "firstname"> 
-        <label for="street">Last Name: </label>
-        <input type= "text"  name="lastname" placeholder="Last Name" formControlName = "lastname">
 
-        <label for="gender">Geneder </label>
-        <input type="radio" value="male" name="gender" formControlName="gender"> Male
-        <input type="radio" value="female" name="gender" formControlName="gender"> Female
-
-     <br/>
-     <br/>
-     <input type="submit"  value="Click here"> 
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Postal Code</mat-label>
+      <input matInput
+             aria-label="Postal Code"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>City</mat-label>
+      <input matInput
+             aria-label="City"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span> |
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Street</mat-label>
+      <input matInput
+             aria-label="Street"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span> |
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>House Number</mat-label>
+      <input matInput
+             aria-label="House Number"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+  
+    <mat-slide-toggle
+      [checked]="stateCtrl.disabled"
+      (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
+      Disable Input?
+    </mat-slide-toggle>
   </form>
+  
+  
+  <!-- Copyright 2021 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
+
 </div> 
 
 
